@@ -31,6 +31,7 @@ def check_arena(user):
         starts_in = int(t["startsAt"]/ 1000) - now
         finishes_in = int(t["finishesAt"]/ 1000) - now
         turl = "https://lichess.org/tournament/" + t["id"]
+        rated = "gewertet" if t["rated"] else "nicht gewertet"
 
         
         if starts_in > 0 and t["id"] not in created:
@@ -45,10 +46,11 @@ def check_arena(user):
 
             if starts_in > 59:
                 starts_string = str(starts_in % 60) + " Minuten und " + str(starts_in - (starts_in // 60) * 60) + f" Sekunden: {turl}"
+                
 
+            
 
-
-            anounce_string = f"Neues Turnier von {user}, Format: {clock_limit}+{clock_increment} Startet in {starts_string}"
+            anounce_string = f"Neues Turnier ({rated}) von {user}, Format: {clock_limit}+{clock_increment} Startet in {starts_string}"
 
             data = {"content":anounce_string}
             requests.post(announce_url, json=data)
@@ -61,7 +63,7 @@ def check_arena(user):
             clock_increment = t["clock"]["increment"]
 
            
-            anounce_string = f"Turnier von {user}, Format: {clock_limit}+{clock_increment} hat jetzt angefangen: {turl}"
+            anounce_string = f"Turnier ({rated}) von {user}, Format: {clock_limit}+{clock_increment} hat jetzt angefangen: {turl}"
             data = {"content":anounce_string}
             requests.post(announce_url, json=data)
             print(anounce_string)
