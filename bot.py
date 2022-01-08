@@ -70,7 +70,7 @@ c = configparser.ConfigParser()
 c.read("general.conf")
 
 announce_url = c["DEFAULT"]["webhook"]
-players =  c["DEFAULT"]["players"]
+players =  c["DEFAULT"]["players"].split(",")
 
 
 created = []
