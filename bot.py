@@ -78,6 +78,8 @@ started = []
 
 while True:
     for p in players:
+        print("Checking for ",p)
         check_arena(p)
-
+        time.sleep(1)
+    print("waiting for 60...")
     time.sleep(60)
