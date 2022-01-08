@@ -3,6 +3,7 @@ import requests
 import datetime
 import json 
 from datetime import timezone
+import time
 
 
 def check_arena(user):
@@ -69,8 +70,14 @@ c = configparser.ConfigParser()
 c.read("general.conf")
 
 announce_url = c["DEFAULT"]["webhook"]
+players =  c["DEFAULT"]["players"]
+
 
 created = []
 started = []
 
-check_arena("tuxmanischerTiger")
+while True:
+    for p in players:
+        check_arena(p)
+
+    time.sleep(60)
