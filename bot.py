@@ -64,7 +64,7 @@ def check_arena(user):
             anounce_string = f"Turnier von {user}, Format: {clock_limit}+{clock_increment} hat jetzt angefangen: {turl}"
             data = {"content":anounce_string}
             requests.post(announce_url, json=data)
-            print(anounce_string
+            print(anounce_string)
 
 
 c = configparser.ConfigParser()
