@@ -8,8 +8,8 @@ import time
 
 def check_arena(user):
 
-    #url = f"https://lichess.org/api/user/{user}/tournament/created?status=10&status=20"
-    url = f"https://lichess.org/api/user/{user}/tournament/created"
+    url = f"https://lichess.org/api/user/{user}/tournament/created?status=10&status=20"
+    #url = f"https://lichess.org/api/user/{user}/tournament/created"
 
     r = requests.get(url)
 
@@ -45,10 +45,10 @@ def check_arena(user):
             starts_string = f"{starts_in} Sekunden {turl}"
 
             if starts_in > 59:
-                starts_string = str(starts_in % 60) + " Minuten und " + str(starts_in - (starts_in // 60) * 60) + f" Sekunden: {turl}"
+                starts_string = str(starts_in // 60) + " Minuten und " + str(starts_in - (starts_in // 60) * 60) + f" Sekunden: {turl}"
                 
 
-            
+                #print(starts_in, starts_in // 60, (starts_in // 60) * 60, starts_in - (starts_in // 60) * 60)
 
             anounce_string = f"Neues Turnier ({rated}) von {user}, Format: {clock_limit}+{clock_increment} Startet in {starts_string}"
 
